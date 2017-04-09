@@ -19,7 +19,7 @@ import org.json.simple.parser.JSONParser;
 public class ReceiverServer implements Runnable {
 
 	public static final int ServerPort = 9999;
-	
+
 	JSONParser parser = new JSONParser();
 	String fileName;
 
@@ -29,7 +29,7 @@ public class ReceiverServer implements Runnable {
 		try {
 			System.out.println("S: Connecting...");
 			ServerSocket serverSocket = new ServerSocket(ServerPort);
-			
+
 			GUI.getInstance();
 
 			while (true) {
@@ -94,9 +94,15 @@ public class ReceiverServer implements Runnable {
 
 	private void saveBarcode(String soNumber, String barcodeVal) {
 
-		File file = new File("./Barcode\\" + soNumber + ".txt");
+		
+		//응급처치. 
+		File file2 = new File("./Barcode");
 
+		file2.mkdir();
+
+		File file = new File("./Barcode\\" + soNumber + ".txt");
 		try {
+
 			file.createNewFile();
 			PrintWriter writer = new PrintWriter(file);
 
